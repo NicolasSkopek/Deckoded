@@ -1,5 +1,5 @@
 ## Configurações Gerais
 
-WIDTH = 1280
-HEIGHT = 720
-TITLE = ""
+WIDTH = 800
+HEIGHT = 600
+TITLE = "Deckoded"
