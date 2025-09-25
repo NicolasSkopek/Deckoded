@@ -23,7 +23,51 @@ class Obj(pygame.sprite.Sprite):
             self.image = pygame.image.load(path + str(self.frame) + "." + file_type)
 
 class Card(Obj):
-    def __init__(self, img, pos, type, *groups):
-        super().__init__(img, pos, *groups)
+    def __init__(self, image, pos, type, reveal_offset=(0, -100), all_sprites=None):
+        super().__init__(image, pos, all_sprites)
 
         self.type = type
+        self.hovered = False
+        self.speed = 6.5
+
+        self.hover_sound = pygame.mixer.Sound("assets/sounds/hoversound.mp3")
+
+        self.original_pos = pygame.Vector2(pos)
+        self.reveal_pos = pygame.Vector2(pos[0] + reveal_offset[0],
+                                         pos[1] + reveal_offset[1])
+
+        self.images = {
+            "normal": pygame.image.load(f"assets/cards/{type}.png"),
+            "hover": pygame.image.load(f"assets/cards/{type}s.png")
+        }
+        self.image = self.images["normal"]
+
+    def events(self, event):
+        if event.type == pygame.MOUSEMOTION:
+            if self.rect.collidepoint(event.pos):
+                if not self.hovered:
+                    self.hovered = True
+                    self.hover_sound.play()
+                    self.image = self.images["hover"]
+            else:
+                if self.hovered:
+                    self.hovered = False
+                    self.image = self.images["normal"]
+
+
+
+    def update(self, mouse_pos):
+        mouse_x, mouse_y = mouse_pos
+
+        if mouse_x > 0 and mouse_y > 450:
+            target = self.reveal_pos
+        else:
+            target = self.original_pos
+
+        current = pygame.Vector2(self.rect.topleft)
+        direction = (target - current)
+
+        if direction.length() > self.speed:
+            direction = direction.normalize() * self.speed
+
+        self.rect.topleft = current + direction
