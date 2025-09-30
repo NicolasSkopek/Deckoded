@@ -42,10 +42,9 @@ class Game(Scene):
 
         self.current_problem = None
 
-        self.round_text = Text("assets/fonts/ARIAL.ttf", 30, "", (255, 255, 255), [WIDTH//2, 50])
+        self.round_text = Text("assets/fonts/ARIAL.ttf", 30, "", (255, 0, 0), [WIDTH//2, 50])
         self.problem_text = Text("assets/fonts/ARIAL.ttf", 24, "", (255, 255, 255), [WIDTH//2, 100])
-
-        self.score_text = Text("assets/fonts/ARIAL.ttf", 30, str(self.score), (255, 255, 255), [50, 50])
+        self.score_text = Text("assets/fonts/ARIAL.ttf", 30, str(self.score), (0, 0, 255), [50, 50])
 
         self.next_round()
 

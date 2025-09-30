@@ -86,7 +86,7 @@ python main.py
 
 | Nome                   | GitHub                                             |
 |------------------------|----------------------------------------------------|
-| Felipe Pereira Firmino | [???](?)                                           |
+| Felipe Pereira Firmino | [felipeaj21](https://github.com/felipeaj21)        |
 | Lucas Marques Ribeiro  | [lucasmri23](https://github.com/lucasmri23)        |
 | Nicolas Skopek de Lima | [@NicolasSkopek](https://github.com/NicolasSkopek) |
 
