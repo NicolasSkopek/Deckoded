@@ -6,7 +6,7 @@ Deckoded é um jogo 2D de cartas o qual o jogador precisa escolher corretamente 
 
 ## 🎯 Objetivo
 
-O projeto visa apresentar uma maneira de compreender conceitos de solucionamento de problemas de maneira lúdica e divertida.
+# Deckoded tem como objetivo ensinar conceitos de **computabilidade, linguagens formais e complexidade de algoritmos** de maneira lúdica e interativa. O jogador precisa identificar corretamente se um problema apresentado é **decidível, semidecidível ou indecidível** usando cartas.
 ---
 
 ## 👨‍💻 Tecnologias e Softwares Utilizadas
