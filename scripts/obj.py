@@ -43,6 +43,8 @@ class Card(Obj):
         self.image = self.images["normal"]
 
     def events(self, event):
+        clicked = False
+
         if event.type == pygame.MOUSEMOTION:
             if self.rect.collidepoint(event.pos):
                 if not self.hovered:
@@ -54,12 +56,16 @@ class Card(Obj):
                     self.hovered = False
                     self.image = self.images["normal"]
 
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            if self.rect.collidepoint(event.pos):
+                clicked = True
 
+        return clicked
 
     def update(self, mouse_pos):
         mouse_x, mouse_y = mouse_pos
 
-        if mouse_x > 0 and mouse_y > 450:
+        if 600 > mouse_x > 200 and mouse_y > 450:
             target = self.reveal_pos
         else:
             target = self.original_pos
