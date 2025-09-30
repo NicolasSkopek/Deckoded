@@ -1,5 +1,8 @@
 import pygame
 
+pygame.mixer.init()
+pygame.font.init()
+
 class Obj(pygame.sprite.Sprite):
 
     def __init__(self, img, pos, *groups):

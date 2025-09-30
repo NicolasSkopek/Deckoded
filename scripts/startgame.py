@@ -4,30 +4,32 @@ from scripts.menu import *
 from scripts.settings import *
 from scripts.game import *
 from scripts.gameover import *
+from scripts.game import Game
+from scripts.api import *
 
 class StartGame:
     def __init__(self):
-
         pygame.init()
         pygame.mixer.init()
         pygame.font.init()
 
         self.window = pygame.display.set_mode([WIDTH, HEIGHT])
-
         pygame.display.set_caption(TITLE)
 
         self.scene = "menu"
         self.current_scene = Menu()
-
         self.fps = pygame.time.Clock()
 
+        start_api_thread()
+
     def run(self):
-
         while True:
-
             if self.scene == "menu" and self.current_scene.active == False:
                 self.scene = "game"
                 self.current_scene = Game()
+
+                set_game_instance(self.current_scene)
+
             elif self.scene == "game" and self.current_scene.active == False:
                 self.scene = "gameover"
                 self.current_scene = GameOver()
@@ -35,12 +37,10 @@ class StartGame:
                 self.scene = "menu"
                 self.current_scene = Menu()
 
-
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-
                 self.current_scene.events(event)
 
             self.fps.tick(60)

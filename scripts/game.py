@@ -4,8 +4,10 @@ import random
 from scripts.obj import Obj, Card
 from scripts.scene import Scene
 from scripts.settings import WIDTH
-from scripts.text import Text  # Certifique-se de que o caminho está correto
+from scripts.text import Text
 
+pygame.mixer.init()
+pygame.font.init()
 
 class Game(Scene):
     def __init__(self):
