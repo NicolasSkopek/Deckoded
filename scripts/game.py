@@ -4,19 +4,24 @@ import random
 from scripts.obj import Obj, Card
 from scripts.scene import Scene
 from scripts.settings import WIDTH
+from scripts.database import Database
 from scripts.text import Text
 
 pygame.mixer.init()
 pygame.font.init()
 
 class Game(Scene):
-    def __init__(self):
+    def __init__(self, player_name="Player1"):
         super().__init__()
 
         self.all_sprites = pygame.sprite.Group()
 
+        self.player = player_name
+
         self.bg = Obj("assets/scenario/bg1.jpg", [0, -300], self.all_sprites)
         self.table = Obj("assets/scenario/table.png", [WIDTH/2 - (640/2), 270], self.all_sprites)
+
+        self.wood_table = Obj("assets/scenario/woodtable.png", [WIDTH/2-90, -60], self.all_sprites)
 
         self.card1 = Card("assets/cards/card1.png", [300, 550], "card1", reveal_offset=(-60, -100), all_sprites=self.all_sprites)
         self.card2 = Card("assets/cards/card2.png", [350, 550], "card2", reveal_offset=(0, -100), all_sprites=self.all_sprites)
@@ -42,11 +47,17 @@ class Game(Scene):
 
         self.current_problem = None
 
-        self.round_text = Text("assets/fonts/ARIAL.ttf", 30, "", (255, 0, 0), [WIDTH//2, 50])
-        self.problem_text = Text("assets/fonts/ARIAL.ttf", 24, "", (255, 255, 255), [WIDTH//2, 100])
+        self.round_text = Text("assets/fonts/ARIAL.ttf", 30, "", (255, 255, 255), [WIDTH//2, 70])
+        self.problem_text = Text("assets/fonts/ARIAL.ttf", 24, "", (255, 255, 255), [WIDTH//2, 200])
         self.score_text = Text("assets/fonts/ARIAL.ttf", 30, str(self.score), (0, 0, 255), [50, 50])
 
         self.next_round()
+
+    def game_over(self):
+        if self.round == 11:
+            db = Database()
+            db.salvar_resultado(self.player, self.score)
+            self.active = False
 
     def next_round(self):
         self.round += 1
@@ -57,12 +68,11 @@ class Game(Scene):
     def check_answer(self, chosen_card):
         if chosen_card.type == self.current_problem["answer"]:
             self.score += 1
-        else:
-            pass
         self.score_text.update_text(str(self.score))
         self.next_round()
 
     def update(self):
+        self.game_over()
         mouse_pos = pygame.mouse.get_pos()
         for card in self.cards:
             card.update(mouse_pos)

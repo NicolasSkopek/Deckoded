@@ -16,6 +16,8 @@ class StartGame:
         self.window = pygame.display.set_mode([WIDTH, HEIGHT])
         pygame.display.set_caption(TITLE)
 
+        self.name = input("Digite seu nome: ")
+
         self.scene = "menu"
         self.current_scene = Menu()
         self.fps = pygame.time.Clock()
@@ -26,7 +28,7 @@ class StartGame:
         while True:
             if self.scene == "menu" and self.current_scene.active == False:
                 self.scene = "game"
-                self.current_scene = Game()
+                self.current_scene = Game(self.name)
 
                 set_game_instance(self.current_scene)
 

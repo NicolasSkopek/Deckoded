@@ -9,6 +9,10 @@ class Text:
         self.max_width = max_width
         self.update_text(text)
 
+        self.text_str = text
+        self.text = self.font.render(self.text_str, True, self.color)
+        self.text_rect = self.text.get_rect(center=pos)
+
     def update_text(self, text, color=None):
         if color:
             self.color = color
