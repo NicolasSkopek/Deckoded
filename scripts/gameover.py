@@ -13,7 +13,7 @@ class GameOver(Scene):
         self.db = Database()
 
         self.text = Text("assets/fonts/ARIAL.ttf", 40, "RESULTADO", (255, 0, 0), [WIDTH//2, 200])
-        self.btn_return = Button(100, 100, "return", self.next_scene)
+        self.btn_return = Button(100, 100, "return", self.next_scene, [255, 255, 255])
 
         resultados = self.db.listar_resultados(10)
 
