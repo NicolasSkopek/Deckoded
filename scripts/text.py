@@ -1,7 +1,7 @@
 import pygame
 
 class Text:
-    def __init__(self, font, size, text, color, pos, max_width=800):
+    def __init__(self, font, size, text, color, pos, max_width=750):
         self.window = pygame.display.get_surface()
         self.font = pygame.font.Font(font, size)
         self.color = color

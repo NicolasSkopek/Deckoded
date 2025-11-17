@@ -26,18 +26,16 @@ class Obj(pygame.sprite.Sprite):
             self.image = pygame.image.load(path + str(self.frame) + "." + file_type)
 
 class Card(Obj):
-    def __init__(self, image, pos, type, reveal_offset=(0, -100), all_sprites=None):
+    def __init__(self, image, pos, type, reveal_offset=(0,-100), all_sprites=None, cursor=None):
         super().__init__(image, pos, all_sprites)
-
         self.type = type
+        self.cursor = cursor
         self.hovered = False
         self.speed = 6.5
-
         self.hover_sound = pygame.mixer.Sound("assets/sounds/hoversound.mp3")
 
         self.original_pos = pygame.Vector2(pos)
-        self.reveal_pos = pygame.Vector2(pos[0] + reveal_offset[0],
-                                         pos[1] + reveal_offset[1])
+        self.reveal_pos = pygame.Vector2(pos[0]+reveal_offset[0], pos[1]+reveal_offset[1])
 
         self.images = {
             "normal": pygame.image.load(f"assets/cards/{type}.png"),
@@ -54,10 +52,14 @@ class Card(Obj):
                     self.hovered = True
                     self.hover_sound.play()
                     self.image = self.images["hover"]
+                    if self.cursor:
+                        self.cursor.set_image("assets/cursor/cursor2.png")
             else:
                 if self.hovered:
                     self.hovered = False
                     self.image = self.images["normal"]
+                    if self.cursor:
+                        self.cursor.set_image("assets/cursor/cursor.png")
 
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if self.rect.collidepoint(event.pos):
@@ -74,7 +76,7 @@ class Card(Obj):
             target = self.original_pos
 
         current = pygame.Vector2(self.rect.topleft)
-        direction = (target - current)
+        direction = target - current
 
         if direction.length() > self.speed:
             direction = direction.normalize() * self.speed

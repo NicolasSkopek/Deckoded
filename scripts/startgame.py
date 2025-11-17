@@ -1,5 +1,6 @@
 import pygame, sys
 
+from scripts.cursor import Cursor
 from scripts.menu import *
 from scripts.settings import *
 from scripts.game import *
@@ -17,6 +18,7 @@ class StartGame:
         pygame.display.set_caption(TITLE)
 
         self.name = input("Digite seu nome: ")
+
 
         self.scene = "menu"
         self.current_scene = Menu()
@@ -44,6 +46,7 @@ class StartGame:
                     pygame.quit()
                     sys.exit()
                 self.current_scene.events(event)
+
 
             self.fps.tick(60)
             self.window.fill("black")
