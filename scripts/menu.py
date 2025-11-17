@@ -20,7 +20,6 @@ class Menu(Scene):
         self.bg_2_1 = Obj("assets/menu/layer_2.png", [800,0], self.all_sprites)
         self.title = Obj("assets/menu/title.png", [0,0], self.all_sprites)
 
-
         self.btn_play = Button(100, 250, "play", self.next_scene, [255,0,0])
         self.btn_quit = Button(100, 320, "quit", self.quit_game, [255,255,255])
 
@@ -36,14 +35,23 @@ class Menu(Scene):
     def update(self):
         self.all_sprites.update()
         self.move_bg()
-        self.btn_play.draw()
-        self.btn_quit.draw()
+
+        mouse_pos = pygame.mouse.get_pos()
+
+        is_hovering = (
+            self.btn_play.render.text_rect.collidepoint(mouse_pos) or
+            self.btn_quit.render.text_rect.collidepoint(mouse_pos)
+        )
+
+        if is_hovering:
+            self.cursor.set_image("assets/cursor/cursor2.png")
+        else:
+            self.cursor.reset_image()
 
     def draw(self):
         self.all_sprites.draw(self.window)
         self.btn_play.draw()
         self.btn_quit.draw()
-
         self.cursor.draw(self.window)
 
     def move_bg(self):
