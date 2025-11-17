@@ -17,8 +17,8 @@ class StartGame:
         self.window = pygame.display.set_mode([WIDTH, HEIGHT])
         pygame.display.set_caption(TITLE)
 
-        self.name = input("Digite seu nome: ")
-
+        import getpass
+        self.name = getpass.getuser()
 
         self.scene = "menu"
         self.current_scene = Menu()

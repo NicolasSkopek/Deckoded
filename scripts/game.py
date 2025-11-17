@@ -18,6 +18,7 @@ class Game(Scene):
         self.all_sprites = pygame.sprite.Group()
         self.player = player_name
 
+        self.result_saved = False
 
         self.show_tutorial = True
         self.tutorial = Obj("assets/scenario/tutorial.png", [85, 100], self.all_sprites)
@@ -57,9 +58,10 @@ class Game(Scene):
         self.next_round()
 
     def game_over(self):
-        if self.round == 11:
+        if self.round > 10 and not self.result_saved:
             db = Database()
             db.salvar_resultado(self.player, self.score)
+            self.result_saved = True
             self.active = False
 
     def next_round(self):

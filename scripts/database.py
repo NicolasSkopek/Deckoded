@@ -7,6 +7,7 @@ class Database:
         self.db_name = db_name
         self._criar_tabela()
 
+
     def _conectar(self):
         conn = sqlite3.connect(self.db_name)
         cursor = conn.cursor()
