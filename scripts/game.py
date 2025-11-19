@@ -39,12 +39,35 @@ class Game(Scene):
             {"text": "Determinar se uma palavra pertence a uma linguagem regular", "answer": "card3"},
             {"text": "Verificar se duas TM aceitam a mesma linguagem", "answer": "card1"},
             {"text": "Verificar se uma gramática livre de contexto gera a palavra vazia", "answer": "card3"},
-            {"text": "Verificar se uma TM aceita infinitas palavras", "answer": "card2"},
+            {"text": "Verificar se uma TM aceita infinitas palavras", "answer": "card1"},
             {"text": "Determinar se duas expressões regulares representam a mesma linguagem", "answer": "card3"},
             {"text": "Determinar se uma TM nunca para em nenhuma entrada", "answer": "card1"},
-            {"text": "Verificar se uma linguagem descrita por uma gramática livre de contexto é vazia", "answer": "card3"},
-            {"text": "Determinar se um autômato finito não-determinístico aceita alguma palavra específica", "answer": "card3"},
+            {"text": "Verificar se uma linguagem descrita por uma gramática livre de contexto é vazia",
+             "answer": "card3"},
+            {"text": "Determinar se um autômato finito não-determinístico aceita alguma palavra específica",
+             "answer": "card3"},
+            {"text": "Verificar se uma TM aceita todas as palavras possíveis do alfabeto", "answer": "card1"},
+            {"text": "Decidir se uma gramática livre de contexto é ambígua", "answer": "card1"},
+            {"text": "Determinar se uma TM aceita uma palavra específica", "answer": "card2"},
+            {"text": "Determinar se uma linguagem regular é infinita", "answer": "card3"},
+            {"text": "Verificar se uma gramática livre de contexto gera linguagens infinitas", "answer": "card3"},
+            {"text": "Determinar se uma TM aceita a palavra vazia", "answer": "card2"},
+            {"text": "Verificar se uma TM aceita todas as palavras de um tamanho específico", "answer": "card1"},
+            {"text": "Determinar se um autômato finito é mínimo", "answer": "card3"},
+            {"text": "Verificar se a linguagem de uma TM é vazia", "answer": "card1"},
+            {"text": "Determinar se um autômato finito é equivalente a outro", "answer": "card3"},
+            {"text": "Determinar se uma gramática livre de contexto pode ser transformada para a forma normal de Chomsky", "answer": "card3"},
+            {"text": "Verificar se uma TM entra em loop infinito em alguma entrada", "answer": "card1"},
+            {"text": "Determinar se uma TM para em TODAS as entradas possíveis", "answer": "card1"},
+            {"text": "Determinar se uma palavra pertence a uma linguagem livre de contexto", "answer": "card3"},
+            {"text": "Verificar se uma linguagem gerada por uma GLC é finita", "answer": "card3"},
+            {"text": "Determinar se uma máquina de Turing aceita exatamente uma única palavra", "answer": "card1"},
+            {"text": "Determinar se um autômato finito tem algum estado inacessível", "answer": "card3"},
+            {"text": "Verificar se uma expressão regular gera a linguagem vazia", "answer": "card3"},
+            {"text": "Decidir se uma TM aceita uma linguagem regular específica", "answer": "card1"},
+            {"text": "Verificar se uma TM aceita uma linguagem livre de contexto específica", "answer": "card1"}
         ]
+
         self.current_problem = None
 
         self.round_text = Text("assets/fonts/VINERITC.ttf", 28, "", (255, 255, 255), [WIDTH//2, 70])
